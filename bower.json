@@ -1,0 +1,20 @@
+{
+  "name": "rpc-geth",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "phukq <phukq@cardano-labo.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "web3": "^0.19.0"
+  }
+}

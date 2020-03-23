@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./web3.min.js"></script>
+    <script src="./ethereumjs-abi-0.6.4.min.js"></script>
+    <script src="./index.js"></script>
+    <script src="./abi-to-selector.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="ip">IP:</label>
+                <input type="text" class="form-control" id="ip" value="localhost:8545">
+            </div>
+
+            <button type="button" class="btn btn-default" id="btn-connect">Connect</button>
+        </form>
+        <hr>
+        <div id="func">
+            
+            
+        </div>
+        <hr>
+        <h3>ABI to selector</h3>
+        <form class="form">
+            <div class="form-group">
+                <label for="ip">ABI:</label>
+                <textarea type="text" class="form-control" id="txtAbi" value="" rows="10"></textarea>
+            </div>
+
+            <button type="button" class="btn btn-default" id="btn-convert-abi-selector">Convert</button>
+            <div class="form-group">
+                <label for="ip">Selectors:</label>
+                <textarea type="text" class="form-control" id="txtSelector" rows="10"></textarea>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
