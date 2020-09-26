@@ -138,16 +138,11 @@ async function hello(name) {
         inputData.push(el);
     }
 
+    var data = ethAbi.encodeMethod.apply(null, [abi, inputData])
+    console.log(data); 
+    var from = $(`#txt-${abi.name}-caller`).val();
+
     if(abi.constant) {
-        // var rs = await contract.methods[name].apply(null, inputData).call();
-        // var rs = await contract.methods[name].apply(null, ["0x9317411384A505F01229859cD7e9EA76365ec7d0"]).call()
-        var signature = createFunctionSignature(abi);
-        console.log(signature);
-        console.log(inputData);
-        inputData.unshift(signature)
-        var data = ethereumjs.ABI.simpleEncode.apply(null,inputData)
-        data = '0x'+buf2hex(data)
-        var from = $(`#txt-${abi.name}-caller`).val();
           // txHash is a hex string
           // As with any RPC call, it may throw an error
           
@@ -163,19 +158,21 @@ async function hello(name) {
           
         console.log(txHash);
     } else {
-        var signature = createFunctionSignature(abi);
-        inputData.unshift(signature)
-        console.log(signature);
+        // var signature = createFunctionSignature(abi);
+        // inputData.unshift(signature)
+        // console.log(signature);
 
-        console.log(inputData);
+        // console.log(inputData);
 
-        var data = ethereumjs.ABI.simpleEncode.apply(null, inputData)
-        console.log(inputData);
+        // var data = ethereumjs.ABI.simpleEncode.apply(null, inputData)
 
-        data = '0x'+buf2hex(data)
-        var from = $(`#txt-${abi.name}-caller`).val();
-          // txHash is a hex string
-          // As with any RPC call, it may throw an error
+        // inputData.unshift(abi)
+        // // console.log(inputData);
+        // var data = ethereumjs.ABI.encode.apply(null, inputData)
+        // data = '0x'+buf2hex(data)
+        // var from = $(`#txt-${abi.name}-caller`).val();
+        //   // txHash is a hex string
+        //   // As with any RPC call, it may throw an error
           const txHash = await ethereum.request({
             method: 'eth_sendTransaction',
             params: [{
@@ -239,17 +236,21 @@ function createAccountSelectElement(accounts, id) {
 
 function createFunctionSignature(abi) {
     console.log(abi);
-    var input = '(';
-    for(var i = 0; i < abi.inputs.length; i++) {
-        input += abi.inputs[i].type;
-        if (i < abi.inputs.length - 1) {
-            input += ','
+    var input =""
+    if(abi.inputs.length > 0) {
+        input = '(';
+        for(var i = 0; i < abi.inputs.length; i++) {
+            input += abi.inputs[i].type;
+            if (i < abi.inputs.length - 1) {
+                input += ','
+            }
         }
+        input += ')';
     }
 
-    input += ')';
-
-    var output = '(';
+    var rs = `${abi.name}${input}`;
+    if(abi.outputs.length > 0) {
+        var output = '(';
         for(var i = 0; i < abi.outputs.length; i++) {
             output += abi.outputs[i].type;
             if (i < abi.outputs.length - 1) {
@@ -259,7 +260,9 @@ function createFunctionSignature(abi) {
         output += ')';
     
 
-    var rs = `${abi.name}${input}:${output}`;
+        rs = `${rs}:${output}`;
+    }
+    
     return rs;
     
 }
