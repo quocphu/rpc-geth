@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script src="./web3.min.js"></script> -->
+    
+    
+    <!-- <script src="./abi-to-selector.js"></script> -->
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- <form class="form-inline">
+            <div class="form-group">
+                <label for="ip">IP:</label>
+                <input type="text" class="form-control" id="ip" value="localhost:8545">
+            </div>
+            <button type="button" class="btn btn-default" id="btn-connect">Connect</button>
+        </form>
+        <hr> -->
+
+        
+            <div class="form-group col-sm-12">
+                <label class="control-label" for="txt-contract-addr">Address:</label>
+                
+                    <input type="text" class="form-control col-sm-10" id="txt-contract-addr" value="0x41346cE77CfC26FD7Ffed5931ff6aa923d1C80D0">
+                
+            </div>
+            
+        <div class="form-group">
+            <label for="txt-contract-abi">ABI:</label>
+            <textarea type="text" class="form-control" id="txt-contract-abi" value="" rows="5"></textarea>
+        </div>
+        <button type="button" class="btn btn-default" id="btn-load">Load</button>
+
+        <hr>
+        <div id="func">
+            <h3>Provide contract address and abi then press Load button</h3>
+            <!-- <div class="form-group">
+                <b>balance Of</b><br>
+                <label for="11">address</label>
+                <input type="text" class="form-control" id="11" value="localhost:8545">
+                <button type="button" class="btn btn-default" id="btn-load">Run</button>
+            </div> -->
+            
+        </div>
+        <hr>
+        
+    </div>
+    <script src="./ethereumjs-abi-0.6.4.min.js"></script>
+    <script src="./metamask_contract.js"></script>
+</body>
+
+</html>
