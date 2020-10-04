@@ -16,6 +16,7 @@ var metamaskAccounts;
 
 $(document).ready(()=> {
     var testabi = [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"account","type":"address"}],"name":"MinterAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"account","type":"address"}],"name":"MinterRemoved","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"constant":false,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"addMinter","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"isMinter","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"account","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"renounceMinter","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]
+    var testabi = [{"inputs":[{"internalType":"uint256","name":"blockReward","type":"uint256"},{"internalType":"address","name":"rewardTokenAddr","type":"address"},{"internalType":"address","name":"stakingTokenAddr","type":"address"},{"internalType":"address","name":"ownerAddr","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"staker","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Stake","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"receiver","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Withdraw","type":"event"},{"constant":true,"inputs":[],"name":"base","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"bkRpt1","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"bkRpt2","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"latestDepositBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"latestWithdrawBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"oldRpt","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"oldTotalStakingAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"rewardPerBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"rewardPerToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"rewardPerTokenPrev","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"rewardToken","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"rewards","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"stakingBalances","outputs":[{"internalType":"uint256","name":"num","type":"uint256"},{"internalType":"uint256","name":"dem","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"stakingBlockTimeLife","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"stakingToken","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"startStakingBlock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalRewardAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalStakingAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"changeOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"addFund","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"stake","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"staker","type":"address"}],"name":"estimateReward","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getBlockDistance","outputs":[{"internalType":"uint256","name":"blockDistance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getCurrentRpt","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"staker","type":"address"}],"name":"stakeBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getDepositAge","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
     $('#txt-contract-abi').val(JSON.stringify(testabi));
 
     $('#btn-load').on('click', async function () {
@@ -92,9 +93,9 @@ function createForm(abi) {
 
     if(abi.payable) {
         var input = `<div class="form-group">
-                    <label class="control-label col-sm-2" for="${abi.name}-value">Value:</label>
+                    <label class="control-label col-sm-2" for="${abi.name}-value">->Value<-:</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" id="txt-${abi.name}-value">
+                    <input type="text" class="form-control" id="txt-${abi.name}-value-eth">
                     </div>
                 </div>
                 `;
@@ -139,14 +140,14 @@ async function hello(name) {
     }
 
     var data = ethAbi.encodeMethod.apply(null, [abi, inputData])
-    console.log(data); 
+    // console.log(data); 
     var from = $(`#txt-${abi.name}-caller`).val();
 
     if(abi.constant) {
           // txHash is a hex string
           // As with any RPC call, it may throw an error
           
-          const txHash = await ethereum.request({
+          const rsData = await ethereum.request({
             method: 'eth_call',
             params: [{
                 from: from,
@@ -155,30 +156,23 @@ async function hello(name) {
             }],
           });
 
-          
-        console.log(txHash);
+        //   var decoded = ethAbi.decodeMethod.apply(null, [abi, rsData])
+        decodeData(abi, rsData)
     } else {
-        // var signature = createFunctionSignature(abi);
-        // inputData.unshift(signature)
-        // console.log(signature);
-
-        // console.log(inputData);
-
-        // var data = ethereumjs.ABI.simpleEncode.apply(null, inputData)
-
-        // inputData.unshift(abi)
-        // // console.log(inputData);
-        // var data = ethereumjs.ABI.encode.apply(null, inputData)
-        // data = '0x'+buf2hex(data)
-        // var from = $(`#txt-${abi.name}-caller`).val();
-        //   // txHash is a hex string
-        //   // As with any RPC call, it may throw an error
+        var value = "0";
+        if (abi.payable) {
+            value = $(`#txt-${abi.name}-value-eth`).val()
+        }
+        console.log(value);
+        var bValue  = new BigNumber(value).toString(16)
+        console.log(bValue.toString(16));
           const txHash = await ethereum.request({
             method: 'eth_sendTransaction',
             params: [{
                 from: from,
                 to: contractAddress,
-                data: data
+                data: data,
+                value: '0x'+bValue
             }],
           });
           console.log(txHash);
@@ -271,5 +265,49 @@ function buf2hex(buffer) { // buffer is an ArrayBuffer
     return Array.prototype.map.call(buffer, x => ('00' + x.toString(16)).slice(-2)).join('');
   }
 
-  
-  
+  function decodeData(abi, data) {
+      console.log(abi);
+      console.log(data);
+    //   data = "0x0000000000000001ad7aed8b79ae351d89fc52c04c8bf4be6fb41841400000000000000000000000000000000000000000000000000000000000000000000000"
+      var decoded = ethAbi.decodeMethod(abi, data)
+      console.log(decoded);
+      for(var i = 0; i < abi.outputs.length; i++) {
+          var out = abi.outputs[i];
+          if (out.type.startsWith('uint')) {
+                if (out.name) {
+                    console.log(out.name, ':', decoded[out.name].toString(10))
+                } else {
+                    
+                    console.log(i, ':', decoded[i].toString(10))
+                }
+          } else {
+            if (out.name) {
+                console.log(out.name, ':', decoded[out.name].toString())
+            } else {
+                console.log(i, ':', decoded[i].toString())
+            }
+          }
+      }
+  }
+
+//   var abi = {
+//     "constant": true,
+//     "inputs": [],
+//     "name": "rewardPerToken",
+//     "outputs": [
+//       {
+//         "internalType": "uint256",
+//         "name": "num",
+//         "type": "uint256"
+//       },
+//       {
+//         "internalType": "uint256",
+//         "name": "dem",
+//         "type": "uint256"
+//       }
+//     ],
+//     "payable": false,
+//     "stateMutability": "view",
+//     "type": "function"
+//   }
+//   decodeData(abi)
