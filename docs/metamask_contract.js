@@ -91,7 +91,7 @@ function createForm(abi) {
         group.append($(input));
     }
 
-    if(abi.payable) {
+    if(abi.payable || abi.stateMutability == 'payable') {
         var input = `<div class="form-group">
                     <label class="control-label col-sm-2" for="${abi.name}-value">->Value<-:</label>
                     <div class="col-sm-10">
@@ -103,7 +103,7 @@ function createForm(abi) {
     }
 
     var btnName = 'Run';
-    if(abi.constant) {
+    if(abi.constant || abi.stateMutability == 'pure' || abi.stateMutability == 'view') {
         btnName = 'Read'
     } else {
         var input = `<div class="form-group">
@@ -143,7 +143,7 @@ async function hello(name) {
     // console.log(data); 
     var from = $(`#txt-${abi.name}-caller`).val();
 
-    if(abi.constant) {
+    if(abi.constant || abi.stateMutability == 'pure' || abi.stateMutability == 'view') {
           // txHash is a hex string
           // As with any RPC call, it may throw an error
           
@@ -160,7 +160,7 @@ async function hello(name) {
         decodeData(abi, rsData)
     } else {
         var value = "0";
-        if (abi.payable) {
+        if(abi.payable || abi.stateMutability == 'payable') {
             value = $(`#txt-${abi.name}-value-eth`).val()
         }
         console.log(value);

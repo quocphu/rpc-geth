@@ -58,7 +58,7 @@ function createForm(abi) {
         group.append($(input));
     }
 
-    if(abi.payable) {
+    if(abi.payable || abi.stateMutability == 'payable') {
         var input = `<div class="form-group">
                     <label class="control-label col-sm-2" for="${abi.name}-value">Value:</label>
                     <div class="col-sm-10">
@@ -70,7 +70,7 @@ function createForm(abi) {
     }
 
     var btnName = 'Run';
-    if(abi.constant) {
+    if(abi.constant || abi.stateMutability == 'pure' || abi.stateMutability == 'view') {
         btnName = 'Read'
     } else {
         var input = `<div class="form-group">
@@ -105,7 +105,7 @@ async function hello(name) {
         inputData.push(el);
     }
 
-    if(abi.constant) {
+    if(abi.constant || abi.stateMutability == 'pure' || abi.stateMutability == 'view') {
         var rs = await contract.methods[name].apply(null, inputData).call();
         // var rs = await contract.methods[name].apply(null, ["0x9317411384A505F01229859cD7e9EA76365ec7d0"]).call()
         console.log(rs);
